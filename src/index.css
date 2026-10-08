@@ -1,0 +1,91 @@
+@import "tailwindcss";
+
+@theme {
+  --color-cream: #f3e7cf;
+  --color-paper: #faf2e1;
+  --color-turquoise: #2a9d8f;
+  --color-firouzeh: #3fb6b0;
+  --color-lapis: #1f3c88;
+  --color-navy: #14213d;
+  --color-terracotta: #c0603f;
+  --color-saffron: #e9a23b;
+  --color-pomegranate: #a4243b;
+  --color-olive: #6b8f4e;
+  --color-ink: #2b2118;
+  --font-sans: "Vazirmatn", system-ui, sans-serif;
+  --font-display: "Lalezar", "Vazirmatn", sans-serif;
+}
+
+html { scroll-behavior: smooth; }
+body {
+  margin: 0;
+  color: var(--color-ink);
+  background-color: var(--color-cream);
+  font-family: var(--font-sans);
+  overflow-x: hidden;
+  -webkit-font-smoothing: antialiased;
+}
+
+.paper {
+  background-color: var(--color-cream);
+  background-image:
+    radial-gradient(ellipse at 15% 10%, rgb(233 162 59 / 0.12), transparent 45%),
+    radial-gradient(ellipse at 85% 60%, rgb(192 96 63 / 0.08), transparent 50%),
+    url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='220' height='220'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='3' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 .35 0 0 0 0 .25 0 0 0 0 .12 0 0 0 .09 0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+}
+
+.tile-band {
+  background-color: var(--color-lapis);
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='40' height='40' viewBox='0 0 40 40'%3E%3Cg fill='none' stroke='%233fb6b0' stroke-width='2'%3E%3Cpath d='M20 2 L38 20 L20 38 L2 20Z'/%3E%3Ccircle cx='20' cy='20' r='5' fill='%23e9a23b' stroke='none'/%3E%3C/g%3E%3Cg fill='%23f3e7cf'%3E%3Ccircle cx='0' cy='0' r='3'/%3E%3Ccircle cx='40' cy='0' r='3'/%3E%3Ccircle cx='0' cy='40' r='3'/%3E%3Ccircle cx='40' cy='40' r='3'/%3E%3C/g%3E%3C/svg%3E");
+  background-size: 40px 40px;
+}
+
+.frame {
+  border: 3px solid var(--color-ink);
+  box-shadow: 6px 6px 0 var(--color-ink);
+}
+
+.btn {
+  display: inline-flex; align-items: center; gap: .5rem;
+  font-weight: 800; border: 3px solid var(--color-ink);
+  border-radius: 999px; padding: .7rem 1.4rem;
+  box-shadow: 4px 4px 0 var(--color-ink);
+  transition: transform .15s, box-shadow .15s;
+  cursor: pointer;
+}
+.btn:hover { transform: translate(-2px, -2px) rotate(-1deg); box-shadow: 6px 6px 0 var(--color-ink); }
+.btn:active { transform: translate(3px, 3px); box-shadow: 1px 1px 0 var(--color-ink); }
+:focus-visible { outline: 3px dashed var(--color-pomegranate); outline-offset: 3px; }
+
+@keyframes float { 0%,100% { transform: translateY(0) } 50% { transform: translateY(-8px) } }
+@keyframes drift { from { transform: translateX(-30%) } to { transform: translateX(130%) } }
+@keyframes spin { to { transform: rotate(360deg) } }
+@keyframes shake { 0%,100% { transform: translate(0,0) rotate(0) } 20% { transform: translate(-3px,1px) rotate(-1deg) } 40% { transform: translate(3px,-1px) rotate(1deg) } 60% { transform: translate(-2px,2px) rotate(0) } 80% { transform: translate(2px,-2px) rotate(1deg) } }
+@keyframes bob { 0%,100% { transform: translateY(0) } 50% { transform: translateY(-3px) } }
+@keyframes blink { 0%,92%,100% { transform: scaleY(1) } 95% { transform: scaleY(.1) } }
+@keyframes wiggle { 0%,100% { transform: rotate(-6deg) } 50% { transform: rotate(6deg) } }
+@keyframes flash { 0%,88%,100% { opacity: 0 } 90%,94% { opacity: 1 } 92% { opacity: .3 } }
+@keyframes pop { 0% { transform: scale(0) } 70% { transform: scale(1.15) } 100% { transform: scale(1) } }
+@keyframes fall { from { transform: translateY(-40px); opacity: 0 } 15% { opacity: 1 } to { transform: translateY(260px); opacity: 0 } }
+@keyframes rise { from { transform: translateY(0) scale(.6); opacity: .8 } to { transform: translateY(-80px) scale(1.6); opacity: 0 } }
+@keyframes carpet-drift { from { transform: translateX(-180px) } 50% { transform: translateX(45vw) translateY(14px) } to { transform: translateX(100vw) } }
+@keyframes cat-walk { from { transform: translateX(100vw) } to { transform: translateX(-90px) } }
+@keyframes march { from { background-position: 0 0 } to { background-position: 40px 0 } }
+
+.scene * { transform-box: fill-box; transform-origin: center; }
+.scene :where([transform]) { transform-box: view-box; transform-origin: 0 0; }
+.scene .o-bottom { transform-origin: bottom center; }
+.scene .o-top { transform-origin: top center; }
+.scene .o-left { transform-origin: left center; }
+.scene .o-right { transform-origin: right center; }
+
+.scene.paused *, .scene.paused { animation-play-state: paused !important; }
+
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  *, *::before, *::after {
+    animation-duration: .001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: .001ms !important;
+  }
+}

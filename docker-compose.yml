@@ -1,0 +1,10 @@
+services:
+  web:
+    build:
+      context: .
+      args:
+        NODE_IMAGE: ${NODE_IMAGE:-node:20-alpine}
+    image: fun-proverbs:latest
+    ports:
+      - "${PORT:-8090}:8080"
+    restart: unless-stopped

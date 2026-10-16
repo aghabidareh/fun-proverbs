@@ -52,6 +52,17 @@ const fileById: Record<string, string> = {
   shahnameh: "Shahnameh",
 };
 
+export function prefetchScenes() {
+  const queue = Object.values(fileById).map((name) => files[`./${name}.tsx`]).filter(Boolean);
+  const idle = (fn: () => void) =>
+    typeof requestIdleCallback === "function" ? requestIdleCallback(fn, { timeout: 2000 }) : setTimeout(fn, 200);
+  const next = () => {
+    const load = queue.shift();
+    if (load) void load().finally(() => idle(next));
+  };
+  idle(next);
+}
+
 export const scenes: Record<string, ComponentType<SceneProps>> = Object.fromEntries(
   Object.entries(fileById)
     .filter(([, name]) => files[`./${name}.tsx`])

@@ -81,7 +81,7 @@ export default function Hero({ onOpen }: { onOpen: () => void }) {
           className="mx-auto w-full max-w-[520px]"
         >
           <ArchFrame className="aspect-[4/4.2]">
-            <KohMoosh playing={inView} big />
+            {inView && <KohMoosh playing big />}
           </ArchFrame>
           <p className="mt-6 text-center font-display text-2xl text-terracotta">«کوه موش زایید»</p>
         </motion.div>

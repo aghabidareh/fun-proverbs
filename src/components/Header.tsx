@@ -4,7 +4,7 @@ import { useSound } from "../lib/util";
 export default function Header({ onRandom }: { onRandom: () => void }) {
   const sound = useSound();
   return (
-    <header className="sticky top-0 z-30 border-b-[3px] border-ink bg-paper/90 backdrop-blur-sm">
+    <header className="sticky top-0 z-30 border-b-[3px] border-ink bg-paper">
       <div className="mx-auto flex max-w-6xl items-center gap-3 px-4 py-2.5">
         <a href="#top" className="flex items-center gap-2 font-display text-xl text-lapis sm:text-2xl" aria-label="صفحه‌ی اول">
           <span aria-hidden className="grid h-9 w-9 place-items-center rounded-full border-[3px] border-ink bg-saffron text-lg">🐭</span>

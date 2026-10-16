@@ -15,7 +15,7 @@ The look mixes Persian miniature painting, tile patterns and old illustrated boo
 ## What's inside
 
 - **46 proverbs, each with its own animated scene.** Every scene is a hand-built SVG illustration with CSS animation. There are no image files or videos.
-- **Gallery.** Large, wide and normal cards in different frame shapes. Scenes play only while they're on screen.
+- **Gallery.** Large, wide and normal cards in different frame shapes. The first 17 proverbs are shown, with a button to reveal the rest. Scenes only run while they're near the screen.
 - **Scene view.** Clicking a proverb opens a big version of its scene, together with:
   - the real meaning
   - the literal version («اگه جدی بگیریمش»)

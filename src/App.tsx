@@ -1,4 +1,4 @@
-import { useCallback, useState } from "react";
+import { useCallback, useEffect, useState } from "react";
 import { proverbs, type Proverb } from "./data/proverbs";
 import { pickOther } from "./lib/util";
 import { play } from "./lib/sound";
@@ -10,9 +10,15 @@ import SceneModal from "./components/SceneModal";
 import About from "./components/About";
 import Donate from "./components/Donate";
 import Footer from "./components/Footer";
+import { prefetchScenes } from "./scenes";
 
 export default function App() {
   const [open, setOpen] = useState<Proverb | null>(null);
+
+  useEffect(() => {
+    const t = window.setTimeout(prefetchScenes, 1500);
+    return () => clearTimeout(t);
+  }, []);
 
   const show = useCallback((p: Proverb) => {
     play(p.sound);
